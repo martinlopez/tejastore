@@ -1,0 +1,16 @@
+public class MessageUtil {
+
+   private String message;
+
+   //Constructor
+   //@param message to be printed
+   public MessageUtil(String mess){
+      this.message = mess;
+   }
+      
+   // prints the message
+   public String printMessage(){
+      System.out.println(message);
+      return message;
+   }   
+} 
