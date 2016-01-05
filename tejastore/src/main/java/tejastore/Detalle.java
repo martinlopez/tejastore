@@ -1,7 +1,8 @@
 package tejastore;
+
 public class Detalle {
 
-
+	
 	private Integer cantidad;
 
 	public Integer getCantidad() {

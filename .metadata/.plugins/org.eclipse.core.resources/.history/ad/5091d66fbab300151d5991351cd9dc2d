@@ -1,0 +1,28 @@
+package tejastore;
+
+import javax.persistence.EntityManagerFactory;
+
+import org.datanucleus.metadata.PersistenceUnitMetaData;
+import org.datanucleus.api.jpa.JPAEntityManagerFactory;
+
+public class DBHandler {
+	
+	
+	DBHandler(){
+		
+	}
+	
+	public static EntityManagerFactory OpenConnection(){
+	
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MyUnit");
+		return em;
+	}
+	
+	public static void closeConnection(EntityManagerFactory em){
+		em.close();
+	}
+	
+
+}
+	
+

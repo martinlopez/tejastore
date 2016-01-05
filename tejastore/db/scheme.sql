@@ -1,132 +1,168 @@
-CREATE TABLE Articulo(
- codigo serial UNIQUE NOT NULL,
- nombre varchar(50),
- precio_compra float,
- precio_venta float,
- stock_min integer,
- stock_max integer,
-PRIMARY KEY (codigo));
+﻿DROP SCHEMA IF EXISTS "TEJASTORE" CASCADE;
+CREATE SCHEMA "TEJASTORE";
+SET search_path='TEJASTORE';
 
-CREATE TABLE Empresa(
- cuit varchar(50) NOT NULL,
- nombre varchar(50),
- email varchar(50),
-PRIMARY KEY (cuit));
+DROP TABLE IF EXISTS "ARTICULO" CASCADE;
 
-CREATE TABLE Turno(
- id varchar(50) NOT NULL,
- h_entrada date,
- h_salida date,
-PRIMARY KEY (id));
+CREATE TABLE "ARTICULO"(
+ "CODIGO" SERIAL UNIQUE NOT NULL,
+ "NOMBRE" varchar(50),
+ "PRECIO_COMPRA" float,
+ "PRECIO_VENTA" float,
+ "STOCK_MIN" integer,
+ "STOCK_MAX" integer,
+ PRIMARY KEY ("CODIGO"));
 
-CREATE TABLE Persona(
- dni varchar(50) NOT NULL,
- nombre varchar(100),
- apellido varchar(50),
- email varchar(50),
- cuil varchar(50),
- fecha_nacimiento varchar(50),
-PRIMARY KEY (dni));
+DROP TABLE IF EXISTS "EMPRESA" CASCADE;
 
-CREATE TABLE Telefono(
- numero varchar(50) NOT NULL,
- codigo varchar(50),
- tipo varchar(50),
- cuit varchar(50) NOT NULL,
-FOREIGN KEY (cuit) REFERENCES Empresa (cuit),
-PRIMARY KEY (numero));
+CREATE TABLE "EMPRESA"(
+ "CUIT" varchar(50) NOT NULL,
+ "NOMBRE" varchar(50),
+ "EMAIL" varchar(50),
+PRIMARY KEY ("CUIT"));
 
-CREATE TABLE Rel4(
- id varchar(50) NOT NULL,
- dni varchar(50) NOT NULL,
-FOREIGN KEY (id) REFERENCES Turno (id),
-FOREIGN KEY (dni) REFERENCES Persona (dni),
-PRIMARY KEY (id,dni));
+DROP TABLE IF EXISTS "TURNO" CASCADE;
+CREATE TABLE "TURNO"(
+ "ID" varchar(50) NOT NULL,
+ "H_ENTRADA" date,
+ "H_SALIDA" date,
+ PRIMARY KEY ("ID"));
 
-CREATE TABLE Empleado(
- dni varchar(50) NOT NULL,
-FOREIGN KEY (dni) REFERENCES Persona (dni),
-PRIMARY KEY (dni));
+DROP TABLE IF EXISTS "PERSONA" CASCADE;
+CREATE TABLE "PERSONA"(
+ "DNI" varchar(50) NOT NULL,
+ "NOMBRE" varchar(100),
+ "APELLIDO" varchar(50),
+ "EMAIL" varchar(50),
+ "CUIL" varchar(50),
+ "FECHA_NACIMIENTO" varchar(50),
+ PRIMARY KEY ("DNI"));
 
-CREATE TABLE Gerente(
- dni varchar(50) NOT NULL,
-FOREIGN KEY (dni) REFERENCES Persona (dni),
-PRIMARY KEY (dni));
+DROP TABLE IF EXISTS "TELEFONO" CASCADE;
+CREATE TABLE "TELEFONO"(
+ "NUMERO" varchar(50) NOT NULL,
+ "CODIGO" varchar(50),
+ "TIPO" varchar(50),
+ "CUIT" varchar(50) NOT NULL,
+FOREIGN KEY ("CUIT") REFERENCES "EMPRESA"("CUIT"),
+PRIMARY KEY ("NUMERO"));
 
-CREATE TABLE Pais(
- id varchar(50) NOT NULL,
- nombre varchar(50),
-PRIMARY KEY (id));
+DROP TABLE IF EXISTS "REL4" CASCADE;
+CREATE TABLE "REL4"(
+ "ID" varchar(50) NOT NULL,
+ "DNI" varchar(50) NOT NULL,
+FOREIGN KEY ("ID") REFERENCES "TURNO" ("ID"),
+FOREIGN KEY ("DNI") REFERENCES "PERSONA" ("DNI"),
+PRIMARY KEY ("ID","DNI"));
 
-CREATE TABLE Rubro(
- id varchar(50) NOT NULL,
- nombre varchar(50),
-PRIMARY KEY (id));
+DROP TABLE IF EXISTS "EMPLEADO" CASCADE;
+CREATE TABLE "EMPLEADO"(
+ "DNI" varchar(50) NOT NULL,
+FOREIGN KEY ("DNI") REFERENCES "PERSONA" ("DNI"),
+PRIMARY KEY ("DNI"));
 
-CREATE TABLE Rel8(
- codigo serial NOT NULL,
- cuit varchar(50) NOT NULL,
-FOREIGN KEY (codigo) REFERENCES Articulo (codigo),
-FOREIGN KEY (cuit) REFERENCES Empresa (cuit),
-PRIMARY KEY (codigo,cuit));
+DROP TABLE IF EXISTS "GERENTE";
+CREATE TABLE "GERENTE"(
+ "DNI" varchar(50) NOT NULL,
+FOREIGN KEY ("DNI") REFERENCES "PERSONA"("DNI"),
+PRIMARY KEY ("DNI"));
 
-CREATE TABLE Venta(
- id varchar(50) NOT NULL,
- monto varchar(50),
- horario varchar(50),
- dni varchar(50) NOT NULL,
-FOREIGN KEY (dni) REFERENCES Persona (dni),
-PRIMARY KEY (id));
+DROP TABLE IF EXISTS "PAIS" CASCADE;
+CREATE TABLE "PAIS"(
+ "ID" varchar(50) NOT NULL,
+ "NOMBRE" varchar(50),
+PRIMARY KEY("ID"));
 
-CREATE TABLE Contiene(
- codigo serial NOT NULL,
- id varchar(50) NOT NULL,
- cant integer NOT NULL,
-FOREIGN KEY (codigo) REFERENCES Articulo (codigo),
-FOREIGN KEY (id) REFERENCES Venta (id),
-PRIMARY KEY (codigo,id));
+DROP TABLE IF EXISTS "RUBRO" CASCADE;
+CREATE TABLE "RUBRO"(
+ "ID" varchar(50) NOT NULL,
+ "NOMBRE" varchar(50),
+PRIMARY KEY ("ID"));
 
-CREATE TABLE Rel11(
- codigo serial NOT NULL,
- id varchar(50) NOT NULL,
-FOREIGN KEY (codigo) REFERENCES Articulo (codigo),
-FOREIGN KEY (id) REFERENCES Rubro (id),
-PRIMARY KEY (codigo,id));
+DROP TABLE IF EXISTS "REL8" CASCADE;
+CREATE TABLE "REL8"(
+ "CODIGO" SERIAL NOT NULL,
+ "CUIT" varchar(50) NOT NULL,
+FOREIGN KEY ("CODIGO") REFERENCES "ARTICULO" ("CODIGO"),
+FOREIGN KEY ("CUIT") REFERENCES "EMPRESA" ("CUIT"),
+PRIMARY KEY ("CODIGO","CUIT"));
 
-CREATE TABLE Provincia(
- Provincia_id varchar(50) NOT NULL,
- nombre varchar(50),
- Pais_id varchar(50) NOT NULL,
-FOREIGN KEY (id) REFERENCES Pais (id),
-PRIMARY KEY (Provincia_id));
+DROP TABLE IF EXISTS "VENTA" CASCADE;
+CREATE TABLE "VENTA"(
+ "ID" varchar(50) NOT NULL,
+ "MONTO" varchar(50),
+ "HORARIO" varchar(50),
+ "DNI" varchar(50) NOT NULL,
+FOREIGN KEY ("DNI") REFERENCES "PERSONA" ("DNI"),
+PRIMARY KEY ("ID"));
 
-CREATE TABLE Localidad(
- Localidad_id varchar(50) NOT NULL,
- nombre varchar(50),
- Provincia_id varchar(50) NOT NULL,
-FOREIGN KEY (id) REFERENCES Provincia (id),
-PRIMARY KEY (Localidad_id));
+DROP TABLE IF EXISTS "CONTIENE" CASCADE;
+CREATE TABLE "CONTIENE"(
+ "CODIGO" SERIAL NOT NULL,
+ "ID" varchar(50) NOT NULL,
+ "CANT" integer NOT NULL,
+FOREIGN KEY ("CODIGO") REFERENCES "ARTICULO" ("CODIGO"),
+FOREIGN KEY ("ID") REFERENCES "VENTA" ("ID"),
+PRIMARY KEY ("CODIGO","ID"));
 
-CREATE TABLE Calle(
- Calle_id varchar(50) NOT NULL,
- num integer,
- nombre varchar(50),
- Localidad_id varchar(50) NOT NULL,
-FOREIGN KEY (id) REFERENCES Localidad (id),
-PRIMARY KEY (Calle_id));
+DROP TABLE IF EXISTS "REL11" CASCADE;
+CREATE TABLE "REL11"(
+ "CODIGO" serial NOT NULL,
+ "ID" varchar(50) NOT NULL,
+FOREIGN KEY ("CODIGO") REFERENCES "ARTICULO" ("CODIGO"),
+FOREIGN KEY ("ID") REFERENCES "RUBRO" ("ID"),
+PRIMARY KEY ("CODIGO","ID"));
 
-CREATE TABLE Direccion(
- cuit varchar(50) NOT NULL,
- id varchar(50) NOT NULL,
-FOREIGN KEY (cuit) REFERENCES Empresa (cuit),
-FOREIGN KEY (id) REFERENCES Calle (id),
-PRIMARY KEY (cuit,id));
+DROP TABLE IF EXISTS "PROVINCIA" CASCADE;
+CREATE TABLE "PROVINCIA"(
+ "ID" varchar(50) NOT NULL,
+ "NOMBRE" varchar(50),
+ "PAIS_ID" varchar(50) NOT NULL,
+ FOREIGN KEY ("PAIS_ID") REFERENCES "PAIS"("ID"),
+PRIMARY KEY ("ID"));
 
-CREATE TABLE Vive(
- id varchar(50) NOT NULL,
- dni varchar(50) NOT NULL,
-FOREIGN KEY (id) REFERENCES Calle (id),
-FOREIGN KEY (dni) REFERENCES Persona (dni),
-PRIMARY KEY (id,dni));
+DROP TABLE IF EXISTS  "LOCALIDAD" CASCADE;
+CREATE TABLE "LOCALIDAD"(
+ "ID" varchar(50) NOT NULL,
+ "NOMBRE" varchar(50),
+ "PROVINCIA_ID" varchar(50) NOT NULL,
+ FOREIGN KEY ("PROVINCIA_ID") REFERENCES "PROVINCIA" ("ID"),
+ PRIMARY KEY ("ID"));
+
+DROP TABLE IF EXISTS "CALLE" CASCADE;
+CREATE TABLE "CALLE"(
+ "ID" varchar(50) NOT NULL,
+ "NUM" integer,
+ "NOMBRE" varchar(50),
+ "LOCALIDAD_ID" varchar(50) NOT NULL,
+ FOREIGN KEY ("LOCALIDAD_ID") REFERENCES "LOCALIDAD" ("ID"),
+ PRIMARY KEY ("ID"));
+
+DROP TABLE IF EXISTS "DIRECCION" CASCADE;
+CREATE TABLE "DIRECCION"(
+ "CUIT" varchar(50) NOT NULL,
+ "ID" varchar(50) NOT NULL,
+FOREIGN KEY ("CUIT") REFERENCES "EMPRESA" ("CUIT"),
+FOREIGN KEY ("ID") REFERENCES "CALLE" ("ID"),
+PRIMARY KEY ("CUIT","ID"));
+
+DROP TABLE IF EXISTS "VIVE" CASCADE;
+CREATE TABLE "VIVE"(
+ "ID" varchar(50) NOT NULL,
+ "DNI" varchar(50) NOT NULL,
+ FOREIGN KEY ("ID") REFERENCES "CALLE" ("ID"),
+ FOREIGN KEY ("DNI") REFERENCES "PERSONA"("DNI"),
+ PRIMARY KEY ("ID","DNI"));
+
+
+DROP SEQUENCE IF EXISTS "ARTICULO_CODIGO_SEQ";
+CREATE SEQUENCE "ARTICULO_CODIGO_SEQ"
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE "ARTICULO_CODIGO_SEQ"
+  OWNER TO postgres;
 
 

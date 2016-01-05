@@ -1,6 +1,10 @@
 package tejastore;
-public class Provincia extends Pais {
+public class Provincia {
 
+	Pais pais;
+	
+	private String nombre;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -9,7 +13,6 @@ public class Provincia extends Pais {
 		this.nombre = nombre;
 	}
 
-	private String nombre;
 
 	@Override
 	public String toString() {
