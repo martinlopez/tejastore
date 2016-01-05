@@ -79,7 +79,7 @@
 	                	<persistenceUnitName>Tutorial</persistenceUnitName>
 	                	<api>JPA</api>
 	                    <log4jConfiguration>${basedir}/src/main/resources/log4j.properties</log4jConfiguration>
-	                    <verbose>true</verbose>
+	            		<verbose>true</verbose>
 	                </configuration>
 	                <executions>
 	                	<execution>
