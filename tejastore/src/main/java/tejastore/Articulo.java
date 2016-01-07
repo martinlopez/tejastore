@@ -22,6 +22,9 @@ public class Articulo {
 	@Id
 	@SequenceGenerator(name="ARTICULO_CODIGO_SEQ", allocationSize=50)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ARTICULO_CODIGO_SEQ")
+	private long id;
+	
+	@Basic
 	private long codigo;
 
 	@Basic
@@ -38,6 +41,9 @@ public class Articulo {
 
 	@Basic
 	private float precio_venta;
+	
+	@Basic
+	private Integer cantidad;
 	
 	
 	
@@ -101,13 +107,30 @@ public class Articulo {
 	public void setPrecio_venta(float precio_venta) {
 		this.precio_venta = precio_venta;
 	}
-	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Integer getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
+			
 	@Override
 	public String toString() {
-		return "Articulo [codigo=" + codigo + ", nombre=" + nombre
-				+ ", stock_max=" + stock_max + ", stock_min=" + stock_min
-				+ ", precio_compra=" + precio_compra + ", precio_venta="
-				+ precio_venta + "]";
+		return "Articulo [id=" + id + ", codigo=" + codigo + ", nombre="
+				+ nombre + ", stock_max=" + stock_max + ", stock_min="
+				+ stock_min + ", precio_compra=" + precio_compra
+				+ ", precio_venta=" + precio_venta + ", cantidad=" + cantidad
+				+ "]";
 	}
 
 	/* 
@@ -170,5 +193,5 @@ public class Articulo {
         }
 	
 	}
-		
+
 }
