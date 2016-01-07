@@ -1,9 +1,8 @@
-package tejastore;
 import java.util.Date;
 
 public class Persona {
 
-	private long dni;
+	private long nro_id;
 
 	private String nombre;
 
@@ -13,51 +12,18 @@ public class Persona {
 
 	private String email;
 
-	public long getDni() {
-		return dni;
-	}
+	private long id;
 
-	public void setDni(long dni) {
-		this.dni = dni;
-	}
+	private String calle;
 
-	public String getNombre() {
-		return nombre;
-	}
+	private Integer nro;
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	private Integer piso;
 
-	public String getApellido() {
-		return apellido;
-	}
+	private Integer departamento;
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+	private long tel_fijo;
 
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
-	}
-
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "Persona [dni=" + dni + ", nombre=" + nombre + ", apellido="
-				+ apellido + ", fecha_nacimiento=" + fecha_nacimiento
-				+ ", email=" + email + "]";
-	}
+	private long tel_movil;
 
 }

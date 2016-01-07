@@ -1,4 +1,3 @@
-package tejastore;
 public class Empresa {
 
 	private String cuit;
@@ -7,34 +6,18 @@ public class Empresa {
 
 	private String nombre;
 
-	public String getCuit() {
-		return cuit;
-	}
+	private long id;
 
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
-	}
+	private String calle;
 
-	public String getEmail() {
-		return email;
-	}
+	private Integer nro;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	private Integer piso;
 
-	public String getNombre() {
-		return nombre;
-	}
+	private Integer departamento;
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	private long tel_movil;
 
-	@Override
-	public String toString() {
-		return "Empresa [cuit=" + cuit + ", email=" + email + ", nombre="
-				+ nombre + "]";
-	}
+	private long tel_fijo;
 
 }
