@@ -1,3 +1,5 @@
+package tejastore;
+
 public class Empresa {
 
 	private String cuit;
@@ -100,7 +102,7 @@ public class Empresa {
 		this.tel_fijo = tel_fijo;
 	}
 
-	@Override
+	
 	public String toString() {
 		return "Empresa [cuit=" + cuit + ", email=" + email + ", nombre="
 				+ nombre + ", id=" + id + ", calle=" + calle + ", nro=" + nro

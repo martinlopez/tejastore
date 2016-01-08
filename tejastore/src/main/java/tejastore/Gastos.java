@@ -1,3 +1,5 @@
+package tejastore;
+
 import java.util.Date;
 
 public class Gastos {

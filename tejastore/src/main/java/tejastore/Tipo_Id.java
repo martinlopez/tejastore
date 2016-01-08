@@ -1,3 +1,5 @@
+package tejastore;
+
 public class Tipo_Id {
 
 	private long id;

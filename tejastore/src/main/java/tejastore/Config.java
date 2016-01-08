@@ -1,5 +1,5 @@
-import java.util.BitSet;
-
+package tejastore;
+import java.awt.Image;
 public class Config {
 
 	private long id;
@@ -12,7 +12,7 @@ public class Config {
 
 	private long tel_movil;
 
-	private BitSet logo;
+	private Image logo;
 
 	private Float iva;
 
@@ -56,11 +56,11 @@ public class Config {
 		this.tel_movil = tel_movil;
 	}
 
-	public BitSet getLogo() {
+	public Image getLogo() {
 		return logo;
 	}
 
-	public void setLogo(BitSet logo) {
+	public void setLogo(Image logo) {		
 		this.logo = logo;
 	}
 

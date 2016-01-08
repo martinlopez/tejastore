@@ -1,9 +1,14 @@
-public class Localidad extends Provincia {
+package tejastore;
 
+public class Localidad {
+
+	
 	private String nombre;
 
 	private long id;
 
+	private Provincia prov_id;
+	
 	public String getNombre() {
 		return nombre;
 	}
