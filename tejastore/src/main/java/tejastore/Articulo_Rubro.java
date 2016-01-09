@@ -1,92 +1,53 @@
 package tejastore;
-import java.awt.Image;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
-public class Config {
 
-	private long id;
+@Entity
+@Table(name="ARTICULO_RUBRO")
+public class Articulo_Rubro {
+	
+	@Id
+	private Articulo articulo;
+	
+	@Id
+	private Rubro rubro;
 
-	private String nombre;
-
-	private long cuit;
-
-	private long tel_fijo;
-
-	private long tel_movil;
-
-	private Image logo;
-
-	private Float iva;
-
-	public long getId() {
-		return id;
+	
+	public Articulo_Rubro(Articulo articulo, Rubro rubro) {
+		this.articulo = articulo;
+		this.rubro = rubro;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public Articulo getArticulo() {
+		return articulo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public void setArticulo(Articulo articulo) {
+		this.articulo = articulo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Rubro getRubro() {
+		return rubro;
 	}
 
-	public long getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(long cuit) {
-		this.cuit = cuit;
-	}
-
-	public long getTel_fijo() {
-		return tel_fijo;
-	}
-
-	public void setTel_fijo(long tel_fijo) {
-		this.tel_fijo = tel_fijo;
-	}
-
-	public long getTel_movil() {
-		return tel_movil;
-	}
-
-	public void setTel_movil(long tel_movil) {
-		this.tel_movil = tel_movil;
-	}
-
-	public Image getLogo() {
-		return logo;
-	}
-
-	public void setLogo(Image logo) {		
-		this.logo = logo;
-	}
-
-	public Float getIva() {
-		return iva;
-	}
-
-	public void setIva(Float iva) {
-		this.iva = iva;
+	public void setRubro(Rubro rubro) {
+		this.rubro = rubro;
 	}
 
 	@Override
 	public String toString() {
-		return "Config [id=" + id + ", nombre=" + nombre + ", cuit=" + cuit
-				+ ", tel_fijo=" + tel_fijo + ", tel_movil=" + tel_movil
-				+ ", logo=" + logo + ", iva=" + iva + "]";
+		return "Articulo_Rubro [articulo=" + articulo + ", rubro=" + rubro
+				+ "]";
 	}
 	
-	
 	/* 
-	 * Métodos para la implementación de ABM config
+	 * Métodos para la implementación de ABM articulo_rubro
 	 */
 	
 
@@ -114,7 +75,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if ((articulo!=null)&&(rubro!=null))
 				em.remove(this);
 			tx.commit();
 		}catch(Exception e)
@@ -132,7 +93,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if((articulo!=null)&&(rubro!=null))
 				em.persist(this);
 			tx.commit();
 		}catch(Exception e)
@@ -150,6 +111,3 @@ public class Config {
 	
 
 }
-
-
-

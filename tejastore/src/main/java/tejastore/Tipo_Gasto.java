@@ -1,3 +1,5 @@
+package tejastore;
+
 public class Tipo_Gasto {
 
 	private long id;
@@ -19,6 +21,7 @@ public class Tipo_Gasto {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 
 	@Override
 	public String toString() {

@@ -1,3 +1,5 @@
+package tejastore;
+
 public class Rubro {
 
 	private long id;

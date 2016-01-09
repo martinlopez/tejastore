@@ -1,95 +1,50 @@
 package tejastore;
-import java.awt.Image;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
-public class Config {
 
-	private long id;
+@Entity
+@Table(name="ARTICULO_VENTA")
+public class Articulo_Venta {
+	
+	@Id
+	private Articulo art;
+	
+	@Id
+	private Venta ven;
 
-	private String nombre;
-
-	private long cuit;
-
-	private long tel_fijo;
-
-	private long tel_movil;
-
-	private Image logo;
-
-	private Float iva;
-
-	public long getId() {
-		return id;
+	public Articulo_Venta(Articulo art, Venta ven) {
+		super();
+		this.art = art;
+		this.ven = ven;
 	}
-
-	public void setId(long id) {
-		this.id = id;
+	public Articulo getArt() {
+		return art;
 	}
-
-	public String getNombre() {
-		return nombre;
+	public void setArt(Articulo art) {
+		this.art = art;
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Venta getVen() {
+		return ven;
 	}
-
-	public long getCuit() {
-		return cuit;
+	public void setVen(Venta ven) {
+		this.ven = ven;
 	}
-
-	public void setCuit(long cuit) {
-		this.cuit = cuit;
-	}
-
-	public long getTel_fijo() {
-		return tel_fijo;
-	}
-
-	public void setTel_fijo(long tel_fijo) {
-		this.tel_fijo = tel_fijo;
-	}
-
-	public long getTel_movil() {
-		return tel_movil;
-	}
-
-	public void setTel_movil(long tel_movil) {
-		this.tel_movil = tel_movil;
-	}
-
-	public Image getLogo() {
-		return logo;
-	}
-
-	public void setLogo(Image logo) {		
-		this.logo = logo;
-	}
-
-	public Float getIva() {
-		return iva;
-	}
-
-	public void setIva(Float iva) {
-		this.iva = iva;
-	}
-
 	@Override
 	public String toString() {
-		return "Config [id=" + id + ", nombre=" + nombre + ", cuit=" + cuit
-				+ ", tel_fijo=" + tel_fijo + ", tel_movil=" + tel_movil
-				+ ", logo=" + logo + ", iva=" + iva + "]";
+		return "Articulo_Venta [art=" + art + ", ven=" + ven + "]";
 	}
 	
 	
 	/* 
-	 * Métodos para la implementación de ABM config
+	 * Métodos para la implementación de ABM articulo_venta
 	 */
 	
-
 	public void alta_ABM(EntityManager em){
 		EntityTransaction tx = em.getTransaction();
 		try{
@@ -114,7 +69,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if ((art!=null)&&(ven!=null))
 				em.remove(this);
 			tx.commit();
 		}catch(Exception e)
@@ -132,7 +87,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if((art!=null)&&(ven!=null))
 				em.persist(this);
 			tx.commit();
 		}catch(Exception e)
@@ -146,10 +101,4 @@ public class Config {
         }
 	
 	}
-	
-	
-
 }
-
-
-

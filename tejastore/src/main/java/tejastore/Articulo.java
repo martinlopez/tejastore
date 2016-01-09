@@ -1,23 +1,24 @@
 package tejastore;
-
-
-
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
 
-
 @Entity
-@Table(name = "articulo", schema="tejastore")
+@Table(name = "articulo")
+
 public class Articulo {
+	
 	
 	@Id
 	@SequenceGenerator(name="ARTICULO_CODIGO_SEQ", allocationSize=50)
@@ -44,20 +45,29 @@ public class Articulo {
 	
 	@Basic
 	private Integer cantidad;
+
+	@ManyToOne( cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@Column(name="MARCA_ID")
+	private Marca marca;
 	
 	
-	
-	public Articulo(String nombre,
+	public Articulo(long codigo,
+					String nombre,
 					Integer stock_max, 
 					Integer stock_min, 
 					float precio_compra, 
-					float precio_venta)
+					float precio_venta,
+					Integer cantidad,
+					Marca marca)
 	{
+		this.codigo=codigo;
 		this.nombre=nombre;
 		this.stock_max=stock_max;
 		this.stock_min=stock_min;
 		this.precio_compra=precio_compra;
 		this.precio_venta=precio_venta;
+		this.cantidad=cantidad;
+		this.marca=marca;
 	}
 
 	public long getCodigo() {
@@ -123,6 +133,16 @@ public class Articulo {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
+	
+
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
 			
 	@Override
 	public String toString() {
@@ -130,13 +150,16 @@ public class Articulo {
 				+ nombre + ", stock_max=" + stock_max + ", stock_min="
 				+ stock_min + ", precio_compra=" + precio_compra
 				+ ", precio_venta=" + precio_venta + ", cantidad=" + cantidad
-				+ "]";
+				+ ", marca=" + marca + "]";
 	}
+
+
 
 	/* 
 	 * Métodos para la implementación de ABM articulo
 	 */
 	
+
 	public void alta_ABM(EntityManager em){
 		EntityTransaction tx = em.getTransaction();
 		try{
@@ -161,7 +184,7 @@ public class Articulo {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if(codigo != 0)
+			if(id != 0)
 				em.remove(this);
 			tx.commit();
 		}catch(Exception e)
@@ -179,7 +202,7 @@ public class Articulo {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if(codigo != 0)
+			if(id != 0)
 				em.persist(this);
 			tx.commit();
 		}catch(Exception e)

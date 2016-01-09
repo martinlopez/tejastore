@@ -1,92 +1,53 @@
 package tejastore;
-import java.awt.Image;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
-public class Config {
 
-	private long id;
+@Entity
+@Table(name="GASTOS_PERSONA")
+public class Gastos_Persona {
+	
+	@Id
+	private Gastos gastos;
+	
+	@Id
+	private Persona pers;
 
-	private String nombre;
-
-	private long cuit;
-
-	private long tel_fijo;
-
-	private long tel_movil;
-
-	private Image logo;
-
-	private Float iva;
-
-	public long getId() {
-		return id;
+	public Gastos_Persona(Gastos gastos, Persona pers) {
+		super();
+		this.gastos = gastos;
+		this.pers = pers;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public Gastos getGastos() {
+		return gastos;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public void setGastos(Gastos gastos) {
+		this.gastos = gastos;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Persona getPers() {
+		return pers;
 	}
 
-	public long getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(long cuit) {
-		this.cuit = cuit;
-	}
-
-	public long getTel_fijo() {
-		return tel_fijo;
-	}
-
-	public void setTel_fijo(long tel_fijo) {
-		this.tel_fijo = tel_fijo;
-	}
-
-	public long getTel_movil() {
-		return tel_movil;
-	}
-
-	public void setTel_movil(long tel_movil) {
-		this.tel_movil = tel_movil;
-	}
-
-	public Image getLogo() {
-		return logo;
-	}
-
-	public void setLogo(Image logo) {		
-		this.logo = logo;
-	}
-
-	public Float getIva() {
-		return iva;
-	}
-
-	public void setIva(Float iva) {
-		this.iva = iva;
+	public void setPers(Persona pers) {
+		this.pers = pers;
 	}
 
 	@Override
 	public String toString() {
-		return "Config [id=" + id + ", nombre=" + nombre + ", cuit=" + cuit
-				+ ", tel_fijo=" + tel_fijo + ", tel_movil=" + tel_movil
-				+ ", logo=" + logo + ", iva=" + iva + "]";
+		return "Gastos_Persona [gastos=" + gastos + ", pers=" + pers + "]";
 	}
 	
 	
 	/* 
-	 * Métodos para la implementación de ABM config
+	 * Métodos para la implementación de ABM gastos_persona
 	 */
 	
 
@@ -114,7 +75,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if  ((gastos!=null)&&(pers!=null))
 				em.remove(this);
 			tx.commit();
 		}catch(Exception e)
@@ -132,7 +93,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if ((gastos!=null)&&(pers!=null))
 				em.persist(this);
 			tx.commit();
 		}catch(Exception e)
@@ -150,6 +111,3 @@ public class Config {
 	
 
 }
-
-
-

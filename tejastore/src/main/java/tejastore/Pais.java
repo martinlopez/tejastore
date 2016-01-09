@@ -1,3 +1,5 @@
+package tejastore;
+
 public class Pais {
 
 	private String nombre;

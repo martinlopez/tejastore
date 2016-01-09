@@ -1,92 +1,53 @@
 package tejastore;
-import java.awt.Image;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
-public class Config {
 
-	private long id;
+@Entity
+@Table(name="EMPRESA_PROVEE")
+public class Empresa_Provee {
 
-	private String nombre;
-
-	private long cuit;
-
-	private long tel_fijo;
-
-	private long tel_movil;
-
-	private Image logo;
-
-	private Float iva;
-
-	public long getId() {
-		return id;
+	@Id
+	private Empresa emp;
+	
+	@Id
+	private Articulo art;
+	
+	public Empresa_Provee(Empresa emp, Articulo art) {
+		super();
+		this.emp = emp;
+		this.art = art;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public Empresa getEmp() {
+		return emp;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public void setEmp(Empresa emp) {
+		this.emp = emp;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Articulo getArt() {
+		return art;
 	}
 
-	public long getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(long cuit) {
-		this.cuit = cuit;
-	}
-
-	public long getTel_fijo() {
-		return tel_fijo;
-	}
-
-	public void setTel_fijo(long tel_fijo) {
-		this.tel_fijo = tel_fijo;
-	}
-
-	public long getTel_movil() {
-		return tel_movil;
-	}
-
-	public void setTel_movil(long tel_movil) {
-		this.tel_movil = tel_movil;
-	}
-
-	public Image getLogo() {
-		return logo;
-	}
-
-	public void setLogo(Image logo) {		
-		this.logo = logo;
-	}
-
-	public Float getIva() {
-		return iva;
-	}
-
-	public void setIva(Float iva) {
-		this.iva = iva;
+	public void setArt(Articulo art) {
+		this.art = art;
 	}
 
 	@Override
 	public String toString() {
-		return "Config [id=" + id + ", nombre=" + nombre + ", cuit=" + cuit
-				+ ", tel_fijo=" + tel_fijo + ", tel_movil=" + tel_movil
-				+ ", logo=" + logo + ", iva=" + iva + "]";
+		return "Empresa_Provee [emp=" + emp + ", art=" + art + "]";
 	}
-	
+
 	
 	/* 
-	 * Métodos para la implementación de ABM config
+	 * Métodos para la implementación de ABM empresa_provee
 	 */
 	
 
@@ -114,7 +75,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if ((emp!=null)&&(art!=null))
 				em.remove(this);
 			tx.commit();
 		}catch(Exception e)
@@ -132,7 +93,7 @@ public class Config {
 		EntityTransaction tx = em.getTransaction();
 		try{
 			tx.begin();
-			if (id!=0)
+			if((emp!=null)&&(art!=null))
 				em.persist(this);
 			tx.commit();
 		}catch(Exception e)
@@ -146,10 +107,6 @@ public class Config {
         }
 	
 	}
-	
-	
 
+	
 }
-
-
-
