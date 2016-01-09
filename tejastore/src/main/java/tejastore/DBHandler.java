@@ -3,9 +3,6 @@ package tejastore;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.datanucleus.metadata.PersistenceUnitMetaData;
-import org.datanucleus.api.jpa.JPAEntityManagerFactory;
-
 public class DBHandler {
 	
 	

@@ -7,6 +7,17 @@
     <persistence-unit name="Produccion" transaction-type="RESOURCE_LOCAL">
         <class>tejastore.Articulo</class>
         <class>tejastore.Marca</class>
+        <class>tejastore.Config</class>
+        <class>tejastore.Detalle</class>
+        <class>tejastore.Persona</class>
+        <class>tejastore.Empleado</class>
+        <class>tejastore.Articulo_Rubro</class>
+        <class>tejastore.Articulo_Venta</class>
+        <class>tejastore.Empresa_Provee</class>
+        <class>tejastore.Empresa</class>
+        <class>tejastore.Gastos_Persona</class>
+        <class>tejastore.Gastos</class>
+        <class>tejastore.Gerente</class>
         <exclude-unlisted-classes/>
 
         <properties>
@@ -23,6 +34,17 @@
 	<persistence-unit name="Test" transaction-type="RESOURCE_LOCAL">
         <class>tejastore.Articulo</class>
         <class>tejastore.Marca</class>
+        <class>tejastore.Config</class>
+        <class>tejastore.Detalle</class>
+        <class>tejastore.Persona</class>
+        <class>tejastore.Empleado</class>
+        <class>tejastore.Articulo_Rubro</class>
+        <class>tejastore.Articulo_Venta</class>
+        <class>tejastore.Empresa_Provee</class>
+        <class>tejastore.Empresa</class>
+        <class>tejastore.Gastos_Persona</class>
+        <class>tejastore.Gastos</class>
+        <class>tejastore.Gerente</class>
         <exclude-unlisted-classes/>
 
         <properties>

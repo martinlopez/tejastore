@@ -24,6 +24,7 @@ public class App {
 			}
 			System.out.println(art.getMarca().getNombre());
 		}
+		
 		em.close();
 		DBHandler.closeConnectionProd(emf);
 		

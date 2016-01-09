@@ -1,5 +1,10 @@
 package tejastore;
 import java.awt.Image;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import org.datanucleus.util.NucleusLogger;
 public class Config {
 
 	private long id;
@@ -78,5 +83,73 @@ public class Config {
 				+ ", tel_fijo=" + tel_fijo + ", tel_movil=" + tel_movil
 				+ ", logo=" + logo + ", iva=" + iva + "]";
 	}
+	
+	
+	/* 
+	 * Métodos para la implementación de ABM config
+	 */
+	
+
+	public void alta_ABM(EntityManager em){
+		EntityTransaction tx = em.getTransaction();
+		try{
+			tx.begin();	
+			em.persist(this);
+			tx.commit();
+		}catch(Exception e)
+        {
+            NucleusLogger.GENERAL.error(">> Exception persisting data", e);
+            System.err.println("Error persisting data : " + e.getMessage());
+            return;
+        }finally{
+        	if (tx.isActive())
+            {
+                tx.rollback();
+            }
+        	
+        }
+  	}
+	
+	public void baja_ABM(EntityManager em){
+		EntityTransaction tx = em.getTransaction();
+		try{
+			tx.begin();
+			if (id!=0)
+				em.remove(this);
+			tx.commit();
+		}catch(Exception e)
+        {
+            NucleusLogger.GENERAL.error(">> Exception persisting data", e);
+            System.err.println("Error persisting data : " + e.getMessage());
+            return;
+        }finally{
+        	if (tx.isActive())
+                tx.rollback();
+        }
+	}
+	
+	public void modificacion_ABM (EntityManager em){
+		EntityTransaction tx = em.getTransaction();
+		try{
+			tx.begin();
+			if (id!=0)
+				em.persist(this);
+			tx.commit();
+		}catch(Exception e)
+        {
+            NucleusLogger.GENERAL.error(">> Exception persisting data", e);
+            System.err.println("Error persisting data : " + e.getMessage());
+            return;
+        }finally{
+        	if (tx.isActive())
+                tx.rollback();
+        }
+	
+	}
+	
+	
 
 }
+
+
+

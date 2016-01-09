@@ -1,7 +1,7 @@
-﻿DROP SCHEMA IF EXISTS "TEJASTORE_TEST" CASCADE;
-CREATE SCHEMA "TEJASTORE_TEST";
---SET search_path='TEJASTORE';
-SET search_path='TEJASTORE_TEST';
+﻿DROP SCHEMA IF EXISTS "TEJASTORE" CASCADE;
+CREATE SCHEMA "TEJASTORE";
+SET search_path='TEJASTORE';
+--SET search_path='TEJASTORE_TEST';
 
 DROP TABLE IF EXISTS "TIPO_GASTOS" CASCADE;
 CREATE TABLE "TIPO_GASTOS"(
@@ -14,6 +14,8 @@ CREATE TABLE "GASTOS"(
  "ID" SERIAL UNIQUE NOT NULL,
  "TIPO_GASTOS_ID" INTEGER,
  "DESCR" varchar(500),
+ "MONTO" float,
+ "FECHA" timestamp,
  FOREIGN KEY ("TIPO_GASTOS_ID") REFERENCES "TIPO_GASTOS"("ID"),
  PRIMARY KEY("ID"));
 
@@ -77,12 +79,13 @@ CREATE TABLE "EMPRESA"(
  "CALLE" varchar(50),
  "NRO" integer,
  "PISO" integer,
+ "DPTO" integer,
+ "LOC_ID" integer,
  "TEL_FIJO" varchar(20),
  "TEL_CEL" varchar(20),
  "EMAIL" varchar(50),
  "DESCR" varchar(500),
- "LOC_ID" integer,
- PRIMARY KEY ("CUIT"),
+ PRIMARY KEY ("ID"),
  FOREIGN KEY ("LOC_ID") REFERENCES "LOCALIDAD"("ID"));
 
 DROP TABLE IF EXISTS "TURNO" CASCADE;
@@ -96,12 +99,13 @@ DROP TABLE IF EXISTS "PERSONA" CASCADE;
 CREATE TABLE "PERSONA"(
  "ID" SERIAL UNIQUE NOT NULL,
  "TIPO_ID" integer,
- "DNI" varchar(20) NOT NULL,
+ "NRO_ID" varchar(20) NOT NULL,
  "NOMBRE" varchar(100),
  "APELLIDO" varchar(50),
  "CALLE" varchar(50),
  "NRO" integer,
  "PISO" integer,
+ "DPTO" integer,
  "LOC_ID" integer,
  "TEL_FIJO" varchar(20),
  "TEL_CEL" varchar(20),
@@ -110,7 +114,7 @@ CREATE TABLE "PERSONA"(
  "FECHA_NACIMIENTO" date,
  FOREIGN KEY ("TIPO_ID") REFERENCES "TIPO_ID"("ID"),
  FOREIGN KEY ("LOC_ID") REFERENCES "LOCALIDAD"("ID"),
- PRIMARY KEY ("DNI"));
+ PRIMARY KEY ("ID"));
 
 DROP TABLE IF EXISTS "GASTOS_PERSONA" CASCADE;
 CREATE TABLE "GASTOS_PERSONA" (
@@ -131,12 +135,44 @@ PRIMARY KEY ("TURNO_ID","PERS_ID"));
 DROP TABLE IF EXISTS "EMPLEADO" CASCADE;
 CREATE TABLE "EMPLEADO"(
  "ID" integer NOT NULL,
-FOREIGN KEY ("ID") REFERENCES "PERSONA" ("ID"),
-PRIMARY KEY ("ID"));
+ "TIPO_ID" integer,
+ "NRO_ID" varchar(20) NOT NULL,
+ "NOMBRE" varchar(100),
+ "APELLIDO" varchar(50),
+ "CALLE" varchar(50),
+ "NRO" integer,
+ "PISO" integer,
+ "DPTO" integer,
+ "LOC_ID" integer,
+ "TEL_FIJO" varchar(20),
+ "TEL_CEL" varchar(20),
+ "EMAIL" varchar(50),
+ "CUIL" varchar(50),
+ "FECHA_NACIMIENTO" date,
+ FOREIGN KEY ("TIPO_ID") REFERENCES "TIPO_ID"("ID"),
+ FOREIGN KEY ("LOC_ID") REFERENCES "LOCALIDAD"("ID"),
+ FOREIGN KEY ("ID") REFERENCES "PERSONA" ("ID"),
+ PRIMARY KEY ("ID"));
 
 DROP TABLE IF EXISTS "GERENTE";
 CREATE TABLE "GERENTE"(
  "ID" integer NOT NULL,
+ "TIPO_ID" integer,
+ "NRO_ID" varchar(20) NOT NULL,
+ "NOMBRE" varchar(100),
+ "APELLIDO" varchar(50),
+ "CALLE" varchar(50),
+ "NRO" integer,
+ "PISO" integer,
+ "DPTO" integer,
+ "LOC_ID" integer,
+ "TEL_FIJO" varchar(20),
+ "TEL_CEL" varchar(20),
+ "EMAIL" varchar(50),
+ "CUIL" varchar(50),
+ "FECHA_NACIMIENTO" date,
+ FOREIGN KEY ("TIPO_ID") REFERENCES "TIPO_ID"("ID"),
+ FOREIGN KEY ("LOC_ID") REFERENCES "LOCALIDAD"("ID"),
 FOREIGN KEY ("ID") REFERENCES "PERSONA"("ID"),
 PRIMARY KEY ("ID"));
 
@@ -190,6 +226,7 @@ CREATE TABLE "CONFIG"(
  "CALLE" varchar(50),
  "NRO" integer,
  "PISO" integer,
+ "DPTO" integer,
  "LOC_ID" integer,
  "TEL_FIJO" varchar(20),
  "TEL_CEL" varchar(20),
