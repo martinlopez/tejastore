@@ -1,15 +1,19 @@
 package tejastore;
 
 import javax.persistence.Basic;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
 
+@Entity
+@Table(name="RUBRO")
 public class Rubro {
 
 	@Id
