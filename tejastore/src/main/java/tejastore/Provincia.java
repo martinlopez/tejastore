@@ -4,7 +4,10 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
@@ -17,6 +20,8 @@ public class Provincia /*extends Pais */{ //ver si la herencia se maNTIENE O NO!
 	private String nombre;
 	
 	@Id
+	@SequenceGenerator(name="PROVINCIA_CODIGO_SEQ", allocationSize=50)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PROVINCIA_CODIGO_SEQ")
 	private long id;
 
 	public String getNombre() {
