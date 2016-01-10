@@ -22,7 +22,7 @@ import org.datanucleus.util.NucleusLogger;
 import sun.util.calendar.BaseCalendar.Date;
 
 @Entity
-@Table(name="Persona")
+@Table(name="PERSONA")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Persona {
 

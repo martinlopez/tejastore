@@ -9,7 +9,7 @@ import org.datanucleus.util.NucleusLogger;
 import sun.util.calendar.BaseCalendar.Date;
 
 @Entity
-@Table(name="empleado")
+@Table(name="EMPLEADO")
 public class Empleado extends Persona {
 	
 	public Empleado() {

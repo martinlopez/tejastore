@@ -16,25 +16,27 @@ import javax.persistence.Table;
 import org.datanucleus.util.NucleusLogger;
 
 @Entity
-@Table(name="Empresa")
+@Table(name="EMPRESA")
 public class Empresa {
 	
 
 	@Id
 	@SequenceGenerator(name="EMPRESA_CODIGO_SEQ", allocationSize=50)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMPRESA_CODIGO_SEQ")
-	
 	private long id;
+	
 	@Basic
 	private String nombre;
+	
 	@Basic
 	private String cuit;
-
 	
 	@Basic
 	private String calle;
+	
 	@Basic
 	private Integer nro;
+	
 	@Basic
 	private Integer piso;
 
@@ -47,10 +49,13 @@ public class Empresa {
 	
 	@Basic
 	private long tel_fijo;
+	
 	@Basic
 	private long tel_movil;
+	
 	@Basic
 	private String email;
+	
 	@Basic
 	private String descr;
 	

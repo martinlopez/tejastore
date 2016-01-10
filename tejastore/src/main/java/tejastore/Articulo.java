@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.datanucleus.util.NucleusLogger;
 
 @Entity
-@Table(name = "articulo")
+@Table(name = "ARTICULO")
 
 public class Articulo {
 	
