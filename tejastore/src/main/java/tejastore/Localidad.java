@@ -6,8 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.datanucleus.util.NucleusLogger;
@@ -20,6 +23,8 @@ public class Localidad {
 	private String nombre;
 	
 	@Id
+	@SequenceGenerator(name="LOCALIDAD_CODIGO_SEQ", allocationSize=50)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOCALIDAD_CODIGO_SEQ")
 	private long id;
 
 	@ManyToOne( cascade={CascadeType.PERSIST, CascadeType.MERGE})
@@ -29,6 +34,7 @@ public class Localidad {
 	
 	public Localidad(String nombre) {
 		this.nombre = nombre;
+		this.prov_id=null;
 	}
 
 	public Localidad(String nombre, Provincia prov) {
