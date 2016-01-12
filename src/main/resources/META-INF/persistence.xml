@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+
+    <!-- Tutorial "unit" -->
+    <persistence-unit name="Produccion" transaction-type="RESOURCE_LOCAL">
+        <class>tejastore.Articulo</class>
+        <class>tejastore.Marca</class>
+        <class>tejastore.Config</class>
+        <class>tejastore.Detalle</class>
+        <class>tejastore.Persona</class>
+        <class>tejastore.Empleado</class>
+        <class>tejastore.Articulo_Rubro</class>
+        <class>tejastore.Articulo_Venta</class>
+        <class>tejastore.Empresa_Provee</class>
+        <class>tejastore.Empresa</class>
+        <class>tejastore.Gastos_Persona</class>
+        <class>tejastore.Gastos</class>
+        <class>tejastore.Gerente</class>
+        <exclude-unlisted-classes/>
+
+        <properties>
+            <!-- ENABLE THESE FOR H2 -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/tejastore"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.user" value= "postgres"/>
+            <property name="javax.persistence.jdbc.password" value= "postgres"/>
+			<property name="datanucleus.mapping.Schema" value="TEJASTORE"/>
+            <property name="datanucleus.schema.autoCreateAll" value="false"/>
+        </properties>
+    </persistence-unit>
+
+	<persistence-unit name="Test" transaction-type="RESOURCE_LOCAL">
+        <class>tejastore.Articulo</class>
+        <class>tejastore.Marca</class>
+        <class>tejastore.Config</class>
+        <class>tejastore.Detalle</class>
+        <class>tejastore.Persona</class>
+        <class>tejastore.Empleado</class>
+        <class>tejastore.Articulo_Rubro</class>
+        <class>tejastore.Articulo_Venta</class>
+        <class>tejastore.Empresa_Provee</class>
+        <class>tejastore.Empresa</class>
+        <class>tejastore.Gastos_Persona</class>
+        <class>tejastore.Gastos</class>
+        <class>tejastore.Gerente</class>
+        <exclude-unlisted-classes/>
+
+        <properties>
+            <!-- ENABLE THESE FOR H2 -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/tejastore"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.user" value= "postgres"/>
+            <property name="javax.persistence.jdbc.password" value= "postgres"/>
+			<property name="datanucleus.mapping.Schema" value="TEJASTORE_TEST"/>
+            <property name="datanucleus.schema.autoCreateAll" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
