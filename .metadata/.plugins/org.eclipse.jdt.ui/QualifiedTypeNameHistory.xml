@@ -12,4 +12,8 @@
 <fullyQualifiedTypeName name="javax.persistence.Entity"/>
 <fullyQualifiedTypeName name="javax.persistence.IdClass"/>
 <fullyQualifiedTypeName name="tejastore.Articulo"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="javax.persistence.Basic"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="org.datanucleus.store.types.wrappers.backed.List"/>
 </qualifiedTypeNameHistroy>
