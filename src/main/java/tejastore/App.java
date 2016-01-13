@@ -3,10 +3,10 @@ package tejastore;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+
 public class App {
 
 	public static void main(String[] args) {
-		
 		// TODO Auto-generated method stub
 		System.out.println("Bienvenido a tejaStore...\n Ejemplo de alta y modificacion de art");
 		EntityManagerFactory emf = DBHandler.OpenConnectionProd();

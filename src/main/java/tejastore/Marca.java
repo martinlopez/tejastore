@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.datanucleus.util.NucleusLogger;
 
 @Entity
-@Table(name="Marca")
+@Table(name="MARCA")
 public class Marca {
 
 	@Id

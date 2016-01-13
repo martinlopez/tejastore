@@ -12,8 +12,10 @@ public class Detalle {
 
 	@Id
 	private Articulo articulo;
+	
 	@Id
 	private Venta venta;
+	
 	@Basic
 	private Integer cantidad;
 
